@@ -1,0 +1,55 @@
+<h1>Management Task-uri</h1>
+
+<ui-view></ui-view>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <span class="lead">Listare task-uri</span>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-sm-6">
+        <a ui-sref="admin.tasks.new" class="btn btn-primary">Adauga task</a>
+      </div>
+    </div>
+    <div class="tablecontainer">
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th>ID.</th>
+          <th>Angajat responsabil</th>
+          <th>Status</th>
+          <th>Data limita</th>
+          <th>Data de inceput</th>
+          <th>Adresa</th>
+          <th>Actiuni</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="task in tasks">
+          <td><span ng-bind="task.rid"></span></td>
+          <td><span ng-bind="task.employee.name"></span></td>
+          <td><span ng-bind="task.status | taskStatus"></span></td>
+          <td><span ng-bind="task.limitDate | date:'dd MMM yyyy HH:mm'"></span></td>
+          <td>
+            <span ng-if="task.startDate != null" ng-bind="task.startDate | date:'dd MMM yyyy HH:mm'"></span>
+            <span ng-if="task.startDate == null">Task-ul nu a fost inceput</span>
+          </td>
+          <td>
+            <span ng-if="task.address != null" ng-bind="task.address"></span>
+            <span ng-if="task.address == null">Adresa nu a fost specificata</span>
+          </td>
+          <td>
+            <a ui-sref="admin.tasks.details({taskId: task.rid})" type="button" class="btn btn-primary">Detalii</a>
+            <a ui-sref="admin.tasks.edit({taskId: task.rid})" type="button" class="btn btn-success">Edit</a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+    <ul uib-pagination boundary-links="true" ng-change="pageChanged()" items-per-page="itemsPerPage" total-items="totalItems" ng-model="currentPage" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
+  </div>
+
+</div>

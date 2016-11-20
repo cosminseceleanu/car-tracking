@@ -1,0 +1,14 @@
+build\/*
+^.idea
+^.gradle
+^.mvn
+out\/*
+gradle\/*
+target\/*
+src\/main\/webapp\/app\/node_modules\/*
+src\/main\/webapp\/app\/dist\/*
+src\/main\/webapp\/app\/bower_components\/*
+src\/main\/webapp\/app\/.idea
+classes
+.tmp\/*
+.sass-cache\/*

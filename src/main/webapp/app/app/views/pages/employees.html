@@ -1,0 +1,69 @@
+<h1>Management Angajati</h1>
+
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="row">
+      <form name="employeeForm" class="form-horizontal" novalidate>
+        <input type="hidden" ng-model="employee.rid">
+        <div class="form-group">
+          <label class="col-sm-1 control-label">Email</label>
+          <div class="col-sm-6">
+            <input type="email" ng-model="employee.email" name="email" class="form-control" placeholder="Email" required>
+            <div class="has-error" ng-show="employeeForm.$dirty">
+              <span ng-show="employeeForm.email.$error.required">Acest camp este obligatoriu</span>
+              <span ng-show="employeeForm.number.$error.email">Email-ul introdus nu este valid</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-1 control-label">Parola</label>
+          <div class="col-sm-6">
+            <input type="password" ng-model="employee.password" name="password" class="form-control" placeholder="Email" required>
+            <div class="has-error" ng-show="employeeForm.$dirty">
+              <span ng-show="employeeForm.email.$error.required">Acest camp este obligatoriu</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-1 control-label">Nume</label>
+          <div class="col-sm-6">
+            <input type="text" name="name" ng-model="employee.name" class="form-control" placeholder="Nume si prenume" required>
+            <div class="has-error" ng-show="carForm.$dirty">
+              <span ng-show="employeeForm.name.$error.required">Acest camp este obligatoriu</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-1 col-sm-10">
+            <button type="submit" ng-click="submit(employee)" ng-disabled="employeeForm.$invalid" class="btn btn-primary">Save</button>
+            <button type="button" class="btn btn-default" ng-click="reset(employeeForm)">Reset</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading"><span class="lead">Lista cu angajatii </span></div>
+  <div class="tablecontainer">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Email</th>
+        <th>Nume</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="employee in employees">
+        <td><span ng-bind="employee.rid"></span></td>
+        <td><span ng-bind="employee.email"></span></td>
+        <td><span ng-bind="employee.name"></span></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
