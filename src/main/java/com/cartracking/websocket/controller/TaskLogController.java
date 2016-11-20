@@ -1,8 +1,10 @@
 package com.cartracking.websocket.controller;
 
+import com.cartracking.main.entities.TaskLog;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
@@ -14,12 +16,14 @@ public class TaskLogController {
     @Autowired
     private SimpMessagingTemplate messagingTemplate;
 
-    @MessageMapping("/tasks")
-    public void test(String test) throws Exception {
-        logger.info(test);
-        messagingTemplate.convertAndSend("/queue/tasks", "test");
-        messagingTemplate.convertAndSend("/topic/tasks.position.1", "test from topic 1");
-        messagingTemplate.convertAndSend("/topic/tasks.position.2", "test from topic 2");
+    @MessageMapping("/task.logs.{taskId}")
+    public void test(@DestinationVariable long taskId, TaskLog taskLog) throws Exception {
+        logger.info(taskLog.getMessage());
+        logger.info(taskId);
+        messagingTemplate.convertAndSend("/topic/task.logs." + taskId , taskLog);
+        TaskLog topic2 = new TaskLog();
+        topic2.setMessage("message for task id 2");
+        messagingTemplate.convertAndSend("/topic/task.logs.2", topic2);
         logger.info("after messages was sent");
     }
 }
