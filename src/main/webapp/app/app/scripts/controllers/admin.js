@@ -12,12 +12,12 @@ angular.module('appApp')
       };
       $stompClient.init('http://localhost:8080/ws');
       $stompClient.connect(function (frame) {
-        $stompClient.subscribe("/queue/tasks");
-        $stompClient.subscribe("/topic/tasks.position.*");
+        $stompClient.subscribe("/topic/task.logs.1");
       });
 
       $scope.sendMessage = function () {
         console.log("send message");
-        $stompClient.send("/app/tasks", {}, "aaaa adasd");
+        var message = {message: "send from js"};
+        $stompClient.send("/app/task.logs.1", {}, JSON.stringify(message));
       }
   }]);
