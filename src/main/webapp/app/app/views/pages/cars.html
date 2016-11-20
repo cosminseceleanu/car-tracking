@@ -1,0 +1,85 @@
+<h1>Management vehicule</h1>
+
+<div class="panel panel-default">
+  <div class="panel-heading"><span class="lead">Adaugare Vehicul Nou </span></div>
+  <div class="panel-body">
+    <div class="row">
+      <form name="carForm" class="form-horizontal" novalidate>
+        <input type="hidden" ng-model="car.rid">
+        <div class="form-group">
+          <label class="col-sm-1 control-label">Numar</label>
+          <div class="col-sm-6">
+            <input type="text" ng-model="car.number" name="number" class="form-control" placeholder="Numar de inmatriculare" required>
+            <div class="has-error" ng-show="carForm.$dirty">
+              <span ng-show="carForm.number.$error.required">This is a required field</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-1 control-label">Model</label>
+          <div class="col-sm-6">
+            <input type="text" name="model" ng-model="car.model" class="form-control" placeholder="Modelul masinii" required>
+            <div class="has-error" ng-show="carForm.$dirty">
+              <span ng-show="carForm.model.$error.required">This is a required field</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-1 control-label">Marca</label>
+          <div class="col-sm-6">
+            <input type="text" ng-model="car.brand" name="brand" class="form-control" placeholder="Marca masinii" required>
+            <div class="has-error" ng-show="carForm.$dirty">
+              <span ng-show="carForm.brand.$error.required">This is a required field</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-1 control-label">Angajat</label>
+          <div class="col-sm-4">
+            <select class="form-control" name="employee" ng-options="employee as employee.name for employee in employees track by employee.rid" ng-model="car.employee">
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-1 col-sm-10">
+            <button type="submit" ng-click="submit(car)" ng-disabled="carForm.$invalid" class="btn btn-primary">Save</button>
+            <button type="button" class="btn btn-default" ng-click="reset(carForm)">Reset</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading"><span class="lead">List of Cars </span></div>
+  <div class="tablecontainer">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th>ID.</th>
+        <th>Numar</th>
+        <th>Model</th>
+        <th>Marca</th>
+        <th>Angajat</th>
+        <th>Actiuni</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="car in cars">
+        <td><span ng-bind="car.rid"></span></td>
+        <td><span ng-bind="car.number"></span></td>
+        <td><span ng-bind="car.model"></span></td>
+        <td><span ng-bind="car.brand"></span></td>
+        <td>
+          <span ng-if="car.employee != null" ng-bind="car.employee.name"></span>
+          <span ng-if="car.employee == null">Masina nu este asociata unui utlizator</span>
+        </td>
+        <td>
+          <button ng-click="edit(car)" type="button" class="btn btn-success">Edit</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

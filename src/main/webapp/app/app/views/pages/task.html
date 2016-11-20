@@ -1,0 +1,46 @@
+<div class="panel panel-default">
+  <div class="panel-heading"><span class="lead">Task id: <b>{{ task.rid }}</b></span></div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-lg-5">
+        <div class="panel panel-primary">
+          <div class="panel-heading">Informatii principale</div>
+          <div class="panel-body">
+            <p><b>Status: <span>{{ task.status| taskStatus }}</span></b></p>
+            <p><b>Nume angajat: </b>{{task.employee.name}}</p>
+            <p><b>Email angajat: </b>{{task.employee.email}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="panel panel-green">
+          <div class="panel-heading">Informatii legata de data</div>
+          <div class="panel-body">
+            <p><b>Data limita:</b> <span>{{ task.limitDate | date:'dd MMM yyyy HH:mm' }}</span></p>
+            <p><b>Data de inceput:</b> <span>{{ task.startDate | date:'dd MMM yyyy HH:mm' }}</span></p>
+            <p><b>Data de finalizare</b>
+              <span ng-if="task.endDate != null">{{ task.endDate | date:'dd MMM yyyy HH:mm' }}</span>
+              <span ng-if="task.endDate == null">Task-ul nu a fost finalizat</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-10">
+        <div class="panel panel-red">
+          <div class="panel-heading">Informatii localizare</div>
+          <div class="panel-body">
+            <ui-gmap-google-map center='map.center' zoom='map.zoom' events="map.events" options="map.options">
+              <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id"></ui-gmap-marker>
+            </ui-gmap-google-map>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="panel-footer">
+    <a class="btn btn-danger" ui-sref="admin.tasks">Inchide detalii</a>
+  </div>
+</div>

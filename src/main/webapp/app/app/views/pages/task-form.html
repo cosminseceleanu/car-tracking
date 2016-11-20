@@ -1,0 +1,60 @@
+<div class="panel panel-default">
+  <div class="panel-heading"><span class="lead">Adaugare task nou </span></div>
+  <div class="panel-body">
+    <div class="row">
+      <form name="taskForm" class="form-horizontal" novalidate>
+        <input type="hidden" name="rid" ng-model="task.rid">
+        <input type="hidden" name="destinationLatitude" ng-model="task.destinationLatitude">
+        <input type="hidden" name="destinationLongitude" ng-model="task.destinationLongitude">
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Data limita</label>
+          <div class="col-sm-6">
+            <p class="input-group">
+              <input type="datetime" class="form-control" name="limitDate" datetime-picker="dd MMM yyyy HH:mm" ng-model="task.limitDate" is-open="isOpen" required  />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="openCalendar($event, prop)"><i class="fa fa-calendar"></i></button>
+              </span>
+            <div class="has-error" ng-show="taskForm.$dirty">
+              <span ng-show="taskForm.limitDate.$error.required">This is a required field</span>
+            </div>
+            </p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Angajat</label>
+          <div class="col-sm-4">
+            <select class="form-control" name="employee" ng-options="employee as employee.name for employee in employees track by employee.rid" ng-model="task.employee">
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Adresa</label>
+          <div class="col-sm-6">
+            <input  class="form-control" type="text" name="address" ng-model="task.address" placeholder="Adresa (Optional)">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Destinatie</label>
+          <div class="col-sm-3">
+            <script id="searchbox.html" type="text/ng-template">
+              <input class="form-control" type="text" placeholder="Cauta locatie">
+            </script>
+          </div>
+          <div class="col-sm-9">
+            <ui-gmap-google-map center='map.center' zoom='map.zoom' events="map.events" options="map.options">
+              <ui-gmap-search-box template="searchbox.template" events="searchbox.events" options="options"></ui-gmap-search-box>
+              <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id"></ui-gmap-marker>
+            </ui-gmap-google-map>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-1 col-sm-10">
+            <button type="submit" ng-click="submit(task)" ng-disabled="taskForm.$invalid" class="btn btn-primary">Save</button>
+            <button type="button" class="btn btn-default" ng-click="reset(taskForm)">Reset</button>
+            <button class="btn btn-danger" ui-sref="admin.tasks">Inchide formular</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

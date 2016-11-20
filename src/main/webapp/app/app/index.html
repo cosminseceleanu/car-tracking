@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Test title</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/metisMenu/dist/metisMenu.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/admin.css -->
+    <link rel="stylesheet" href="styles/sb-admin-2.css">
+    <link rel="stylesheet" href="styles/timeline.css">
+    <!-- endbuild -->
+
+
+  </head>
+  <body ng-app="appApp">
+
+      <div ui-view></div>
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/metisMenu/dist/metisMenu.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-jwt/dist/angular-jwt.js"></script>
+    <script src="bower_components/bootstrap-ui-datetime-picker/dist/datetime-picker.js"></script>
+    <script src="bower_components/angular-simple-logger/dist/angular-simple-logger.js"></script>
+    <script src="bower_components/lodash/lodash.js"></script>
+    <script src="bower_components/markerclustererplus/src/markerclusterer.js"></script>
+    <script src="bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
+    <script src="bower_components/sockjs-client/dist/sockjs.js"></script>
+    <script src="bower_components/stomp-websocket/lib/stomp.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/login.js"></script>
+
+        <script src="scripts/js/sb-admin-2.js"></script>
+        <script src="scripts/js/task-map.js"></script>
+
+        <script src="scripts/services/securityservice.js"></script>
+        <script src="scripts/services/userservice.js"></script>
+        <script src="scripts/services/carservice.js"></script>
+        <script src="scripts/directives/sidebar.js"></script>
+        <script src="scripts/directives/header.js"></script>
+        <script src="scripts/directives/header-notification.js"></script>
+        <script src="scripts/controllers/admin.js"></script>
+        <script src="scripts/controllers/car.js"></script>
+        <script src="scripts/controllers/employee.js"></script>
+        <script src="scripts/services/employeeservice.js"></script>
+        <script src="scripts/services/taskservice.js"></script>
+        <script src="scripts/controllers/tasks.js"></script>
+        <script src="scripts/filters/taskstatusfilter.js"></script>
+        <script src="scripts/controllers/taskform.js"></script>
+        <script src="scripts/controllers/task.js"></script>
+        <script src="scripts/services/stompclient.js"></script>
+        <!-- endbuild -->
+</body>
+</html>
