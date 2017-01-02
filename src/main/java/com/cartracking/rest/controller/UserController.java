@@ -19,7 +19,6 @@ import java.net.URI;
 
 @Controller
 @RequestMapping("/api/users")
-@Secured("ROLE_ADMIN")
 public class UserController {
 
     @Autowired
@@ -46,6 +45,7 @@ public class UserController {
         return new ResponseEntity<>(resourceAsm.toResource(user), HttpStatus.OK);
     }
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<UserResource> create(@RequestBody UserResource sentUserResource) {
         User user = userService.create(sentUserResource.toUser());
@@ -56,6 +56,7 @@ public class UserController {
         return new ResponseEntity<>(userResource, httpHeaders, HttpStatus.CREATED);
     }
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping(method = RequestMethod.DELETE, value = "/{userId}")
     public ResponseEntity<UserResource> delete(@PathVariable long userId) {
         try {

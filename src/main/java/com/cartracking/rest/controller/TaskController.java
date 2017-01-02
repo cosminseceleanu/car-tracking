@@ -20,7 +20,6 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
-@Secured("ROLE_ADMIN")
 public class TaskController {
     @Autowired
     private TaskService taskService;
@@ -31,6 +30,7 @@ public class TaskController {
     @Autowired
     private PagedResourcesAssembler<Task> pagedResourcesAssembler;
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/employees/{employeeId}/tasks", method = RequestMethod.POST)
     public ResponseEntity<?> create(@PathVariable long employeeId, @RequestBody TaskResource taskResource) {
         taskService.save(taskResource.toTask(), employeeId);
@@ -38,7 +38,8 @@ public class TaskController {
         return new ResponseEntity<>(null, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/users/{userId}/tasks")
+    @Secured("ROLE_ADMIN")
+    @RequestMapping(value = "/users/{userId}/tasks", method = RequestMethod.GET)
     public ResponseEntity<PagedResources<TaskResource>> getAll(@PathVariable long userId, Pageable pageable) {
         Page<Task> tasks = taskService.getAll(userId, pageable);
         PagedResources<TaskResource> resources = pagedResourcesAssembler.toResource(tasks, taskResourceAsm);
@@ -46,7 +47,15 @@ public class TaskController {
         return new ResponseEntity<>(resources, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/tasks/{id}")
+    @RequestMapping(value = "/employees/{employeeId}/tasks", method = RequestMethod.GET)
+    public ResponseEntity<PagedResources<TaskResource>> getForEmployee(@PathVariable long employeeId, Pageable pageable) {
+        Page<Task> tasks = taskService.getForEmployee(employeeId, pageable);
+        PagedResources<TaskResource> resources = pagedResourcesAssembler.toResource(tasks, taskResourceAsm);
+
+        return new ResponseEntity<>(resources, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/tasks/{id}", method = RequestMethod.GET)
     public ResponseEntity<TaskResource> get(@PathVariable long id) {
         Optional<Task> taskOptional = taskService.get(id);
         Task task = taskOptional.orElseThrow(() ->
@@ -55,7 +64,7 @@ public class TaskController {
         return new ResponseEntity<>(taskResourceAsm.toResource(task), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/employees/{employeeId}/tasks/{taskId}")
+    @RequestMapping(value = "/employees/{employeeId}/tasks/{taskId}", method = RequestMethod.PUT)
     public ResponseEntity<?> update(@PathVariable long employeeId,
                                     @PathVariable long taskId,
                                     @RequestBody TaskResource resource) {

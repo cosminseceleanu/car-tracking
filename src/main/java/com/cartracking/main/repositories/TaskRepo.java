@@ -7,4 +7,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 public interface TaskRepo extends PagingAndSortingRepository<Task, Long> {
     Page<Task> findByEmployeeAdminId(long adminId, Pageable pageable);
+
+    Page<Task> findByEmployeeId(long employeeId, Pageable pageable);
 }
