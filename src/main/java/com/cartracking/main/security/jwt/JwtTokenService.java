@@ -7,12 +7,13 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import java.util.Base64;
 import java.util.Date;
 
 @Service
 public class JwtTokenService {
 
-    private String secret = "aaaaaa";
+    private final static String secret = "aaaaaa";
     private Long expiration = (long) 3600 * 24;
 
     public String generateToken(SecurityUser user) {
@@ -22,7 +23,7 @@ public class JwtTokenService {
         return Jwts.builder()
                 .setClaims(claims)
                 .setExpiration(generateExpirationDate())
-                .signWith(SignatureAlgorithm.HS256, secret)
+                .signWith(SignatureAlgorithm.HS256, getKey())
                 .compact();
     }
 
@@ -44,7 +45,7 @@ public class JwtTokenService {
 
     private Claims getClaimsFromToken(String token) {
          return Jwts.parser()
-                    .setSigningKey(secret)
+                    .setSigningKey(getKey())
                     .parseClaimsJws(token)
                     .getBody();
     }
@@ -52,4 +53,11 @@ public class JwtTokenService {
     private Date generateExpirationDate() {
         return new Date(System.currentTimeMillis() + expiration * 1000);
     }
+
+    private String getKey() {
+        byte [] keyBytes = Base64.getEncoder().encode(secret.getBytes());
+
+        return new String(keyBytes);
+    }
+
 }

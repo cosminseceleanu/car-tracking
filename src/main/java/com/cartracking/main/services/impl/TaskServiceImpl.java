@@ -43,6 +43,11 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
+    public Page<Task> getForEmployee(long employeeId, Pageable pageable) {
+        return taskRepo.findByEmployeeId(employeeId, pageable);
+    }
+
+    @Override
     public Optional<Task> get(long id) {
         return Optional.ofNullable(taskRepo.findOne(id));
     }

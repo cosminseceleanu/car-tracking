@@ -16,7 +16,9 @@
     "angular-ui-router": "0.2.13",
     "angular-jwt": "0.0.9",
     "bootstrap-ui-datetime-picker": "2.4.3",
-    "angular-google-maps": "2.3.4"
+    "angular-google-maps": "2.3.4",
+    "sockjs-client": "1.1.1",
+    "stomp-websocket": "2.3.4"
   },
   "devDependencies": {
     "angular-mocks": "^1.5.*"

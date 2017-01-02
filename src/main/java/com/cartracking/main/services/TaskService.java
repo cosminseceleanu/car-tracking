@@ -13,6 +13,8 @@ public interface TaskService {
 
     Page<Task> getAll(long userId, Pageable pageable);
 
+    Page<Task> getForEmployee(long employeeId, Pageable pageable);
+
     Optional<Task> get(long id);
 
     Task update(Task task, long employeeId) throws NotFoundException;
