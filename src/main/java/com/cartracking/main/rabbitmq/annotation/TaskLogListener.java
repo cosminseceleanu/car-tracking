@@ -16,6 +16,6 @@ import java.lang.annotation.Target;
 @RabbitListener(bindings = @QueueBinding(
         value = @Queue(value = "task.logs", durable = "true"),
         exchange = @Exchange(value = "amq.topic", type = ExchangeTypes.TOPIC, durable = "true"),
-        key = "task.logs.*"))
+        key = "user.*.task.logs"))
 public @interface TaskLogListener {
 }
