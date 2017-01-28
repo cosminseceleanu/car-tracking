@@ -13,6 +13,7 @@ public interface UserRepo extends CrudRepository<User, Long> {
 
     User findByEmail(String email);
     Iterable<User> findByAdmin(User admin);
+
     @Query(WITHOUT_CAR_QUERY)
     Iterable<User> findWithoutCar(User admin);
 }

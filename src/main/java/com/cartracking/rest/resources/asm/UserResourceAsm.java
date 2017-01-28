@@ -22,6 +22,7 @@ public class UserResourceAsm extends ResourceAssemblerSupport <User, UserResourc
         res.setName(entity.getName());
         res.setRid(entity.getId());
         res.setPassword(entity.getPassword());
+        res.setAdminId(entity.getAdmin().getId());
         Link link = linkTo(methodOn(UserController.class).find(entity.getId())).withSelfRel();
         res.add(link.withSelfRel());
 
