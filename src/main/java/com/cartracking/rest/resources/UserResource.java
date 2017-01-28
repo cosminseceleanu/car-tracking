@@ -10,6 +10,7 @@ public class UserResource extends ResourceSupport {
     private String email;
     private String password;
     private long rid;
+    private long adminId;
 
     public String getName() {
         return name;
@@ -33,6 +34,14 @@ public class UserResource extends ResourceSupport {
 
     public long getRid() {
         return rid;
+    }
+
+    public long getAdminId() {
+        return adminId;
+    }
+
+    public void setAdminId(long adminId) {
+        this.adminId = adminId;
     }
 
     @JsonIgnore
