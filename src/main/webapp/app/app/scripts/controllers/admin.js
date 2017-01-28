@@ -1,23 +1,34 @@
 'use strict';
 
 angular.module('appApp')
-  .controller('AdminCtrl', ['$securityService', '$scope', '$location', '$stompClient',
-    function ($securityService, $scope, $location, $stompClient) {
+  .controller('AdminCtrl', ['$securityService', '$scope', '$location', '$stompClient', '$state',
+    function ($securityService, $scope, $location, $stompClient, $state) {
       if (!$securityService.isLogged()) {
           $location.path('home');
       }
+      var topic = "/topic/user." + $securityService.getUserId() + ".employee.*.task.logs";
+      var subscription = null;
+
       $scope.logout = function () {
-          $securityService.logout();
-          $location.path('home');
+        $securityService.logout();
+        $stompClient.disconnect();
+        $location.path('home');
       };
-      $stompClient.init('http://localhost:8080/ws');
-      $stompClient.connect(function (frame) {
-        $stompClient.subscribe("/topic/task.logs.1");
+      $stompClient.connect(function () {
+        subscription = $stompClient.subscribe(topic, broadcastUpdateLocation);
       });
 
-      $scope.sendMessage = function () {
-        console.log("send message");
-        var message = {message: "send from js"};
-        $stompClient.send("/app/task.logs.1", {}, JSON.stringify(message));
+      function broadcastUpdateLocation (message) {
+        $scope.$broadcast("locationUpdate", message);
       }
+
+      function disconnect() {
+        if (subscription) {
+          subscription.unsubscribe();
+        }
+      }
+
+      $scope.$on("$destroy", disconnect);
+      $scope.$on('disconnect', disconnect);
+      $state.go('admin.home');
   }]);

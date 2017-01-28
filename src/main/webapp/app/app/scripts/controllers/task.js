@@ -2,7 +2,7 @@
 
 angular.module('appApp')
   .controller('TaskCtrl',['$scope', '$taskService', 'taskId', function ($scope, $taskService, taskId) {
-    $scope.task = {rid: '', destinationLatitude: '', destinationLongitude: '', endDate: '', address: '', employee: ''};;
+    $scope.task = {rid: '', destinationLatitude: '', destinationLongitude: '', endDate: '', address: '', employee: ''};
 
     $taskService.get(taskId, function (response) {
       $scope.task = response.data;

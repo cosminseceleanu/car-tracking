@@ -20,7 +20,7 @@ public class TaskLogController {
     public void test(@DestinationVariable long taskId, TaskLog taskLog) throws Exception {
         logger.info(taskLog.getTime());
         logger.info(taskId);
-        messagingTemplate.convertAndSend("/topic/task.logs." + taskId, taskLog);
+//        messagingTemplate.convertAndSend("/topic/task.logs." + taskId, taskLog);
         logger.info("after messages was sent");
     }
 }

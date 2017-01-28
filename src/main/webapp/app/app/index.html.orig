@@ -45,9 +45,12 @@
     <script src="bower_components/bootstrap-ui-datetime-picker/dist/datetime-picker.js"></script>
     <script src="bower_components/angular-simple-logger/dist/angular-simple-logger.js"></script>
     <script src="bower_components/lodash/lodash.js"></script>
+    <script src="bower_components/markerclustererplus/src/markerclusterer.js"></script>
+    <script src="bower_components/google-maps-utility-library-v3-markerwithlabel/dist/markerwithlabel.js"></script>
+    <script src="bower_components/google-maps-utility-library-v3-infobox/dist/infobox.js"></script>
+    <script src="bower_components/google-maps-utility-library-v3-keydragzoom/dist/keydragzoom.js"></script>
+    <script src="bower_components/js-rich-marker/src/richmarker.js"></script>
     <script src="bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
-    <script src="bower_components/sockjs-client/dist/sockjs.js"></script>
-    <script src="bower_components/stomp-websocket/lib/stomp.min.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -60,6 +63,7 @@
         <script src="scripts/js/task-map.js"></script>
 
         <script src="scripts/services/securityservice.js"></script>
+        <script src="scripts/services/userservice.js"></script>
         <script src="scripts/services/carservice.js"></script>
         <script src="scripts/directives/sidebar.js"></script>
         <script src="scripts/directives/header.js"></script>
@@ -74,8 +78,6 @@
         <script src="scripts/controllers/taskform.js"></script>
         <script src="scripts/controllers/task.js"></script>
         <script src="scripts/services/stompclient.js"></script>
-        <script src="scripts/controllers/employeelocation.js"></script>
-        <script src="scripts/controllers/adminhome.js"></script>
         <!-- endbuild -->
 </body>
 </html>
