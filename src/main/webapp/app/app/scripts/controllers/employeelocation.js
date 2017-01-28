@@ -15,6 +15,12 @@ angular.module('appApp')
         $employeeService.get(id, function (response) {
           employee = response.data;
           $scope.employee = employee;
+          marker.options = {
+            labelClass:'marker_labels',
+              labelAnchor: "36 61",
+              labelContent: employee.name + '(' + employee.rid +')'
+          };
+          $scope.marker = marker;
         });
 
         $scope.$on('locationUpdate', function (event, message) {
