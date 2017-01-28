@@ -6,6 +6,7 @@ public class TaskLog {
     private double longitude;
     private double speed;
     private double altitude;
+    private long employeeId;
 
     public void setTime(long time) {
         this.time = time;
@@ -45,5 +46,13 @@ public class TaskLog {
 
     public void setAltitude(double altitude) {
         this.altitude = altitude;
+    }
+
+    public long getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(long employeeId) {
+        this.employeeId = employeeId;
     }
 }

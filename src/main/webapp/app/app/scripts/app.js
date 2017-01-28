@@ -55,6 +55,26 @@ angular.module('appApp', [
         controller: 'EmployeeCtrl',
         templateUrl: 'views/pages/employees.html'
       })
+      .state('admin.home', {
+        url: '/home',
+        controller: 'AdminHomeCtrl',
+        templateUrl: 'views/pages/home.html',
+        resolve: {
+          id: function ($stateParams) {
+            return $stateParams.id;
+          }
+        }
+      })
+      .state('admin.location', {
+        url: '/location/{id}',
+        controller: 'EmployeeLocationCtrl',
+        templateUrl: 'views/pages/employee-location.html',
+        resolve: {
+          id: function ($stateParams) {
+            return $stateParams.id;
+          }
+        }
+      })
       .state('admin.tasks', {
         url: '/tasks',
         controller: 'TasksCtrl',

@@ -40,8 +40,20 @@
             <span ng-if="task.address == null">Adresa nu a fost specificata</span>
           </td>
           <td>
-            <a ui-sref="admin.tasks.details({taskId: task.rid})" type="button" class="btn btn-primary">Detalii</a>
-            <a ui-sref="admin.tasks.edit({taskId: task.rid})" type="button" class="btn btn-success">Edit</a>
+            <div class="btn-group" uib-dropdown>
+              <button id="split-button" type="button" class="btn btn-success">Actiuni</button>
+              <button type="button" class="btn btn-success" uib-dropdown-toggle>
+                <span class="caret"></span>
+                <span class="sr-only">Split button!</span>
+              </button>
+              <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+                <li role="menuitem"><a ui-sref="admin.tasks.details({taskId: task.rid})" >Detalii</a></li>
+                <li role="menuitem"><a ui-sref="admin.tasks.edit({taskId: task.rid})" >Edit</a></li>
+                <li class="divider"></li>
+                <li role="menuitem"> <a ui-sref="admin.location({id: task.employee.rid})">Urmareste Locatia</a></li>
+              </ul>
+            </div>
+
           </td>
         </tr>
         </tbody>

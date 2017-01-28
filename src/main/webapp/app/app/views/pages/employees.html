@@ -55,6 +55,7 @@
         <th>ID</th>
         <th>Email</th>
         <th>Nume</th>
+        <th>Actiuni</th>
       </tr>
       </thead>
       <tbody>
@@ -62,6 +63,7 @@
         <td><span ng-bind="employee.rid"></span></td>
         <td><span ng-bind="employee.email"></span></td>
         <td><span ng-bind="employee.name"></span></td>
+        <td><a ui-sref="admin.location({id: employee.rid})" type="button" class="btn btn-primary">Urmareste locatia</a></td>
       </tr>
       </tbody>
     </table>

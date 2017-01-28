@@ -16,6 +16,11 @@ angular.module('appApp')
       doRequest($http.post(baseUrl, employee), callback);
     };
 
+    service.get = function (id, callback) {
+      var url = API + "/users/" + id;
+      doRequest($http.get(url), callback);
+    };
+
     function doRequest(promise, successCallback) {
       promise.then(function (response) {
         successCallback(response);
