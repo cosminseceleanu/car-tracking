@@ -25,8 +25,8 @@ public class RabbitMqConfig {
     public SimpleRabbitListenerContainerFactory rabbitListenerContainerFactory() {
         SimpleRabbitListenerContainerFactory factory = new SimpleRabbitListenerContainerFactory();
         factory.setConnectionFactory(connectionFactory());
-        factory.setConcurrentConsumers(3);
-        factory.setMaxConcurrentConsumers(10);
+        factory.setConcurrentConsumers(1);
+        factory.setMaxConcurrentConsumers(1);
         factory.setAcknowledgeMode(AcknowledgeMode.AUTO);
 
         return factory;
