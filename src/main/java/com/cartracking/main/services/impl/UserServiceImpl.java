@@ -5,6 +5,7 @@ import com.cartracking.main.repositories.UserRepo;
 import com.cartracking.main.services.UserService;
 import com.cartracking.main.services.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -42,6 +43,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Transactional
+    @CacheEvict(cacheNames = "users-by-email", allEntries = true)
     @Override
     public void delete(long id) throws NotFoundException {
         User user = find(id);

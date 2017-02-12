@@ -70,10 +70,9 @@ public class TaskController {
                                     @RequestBody TaskResource resource) {
 
         Optional<Task> taskOptional = taskService.get(taskId);
-        taskOptional.orElseThrow(() -> new NotFoundException(String.format("No taskOptional with %d found", taskId)));
-
+        taskOptional.orElseThrow(() -> new NotFoundException(String.format("No task with %d found", taskId)));
         try {
-            taskService.save(resource.toTask(), employeeId);
+            taskService.update(resource.toTask(), employeeId);
         } catch (com.cartracking.main.services.exceptions.NotFoundException e) {
             throw new NotFoundException(e);
         }
