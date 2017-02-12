@@ -1,6 +1,8 @@
-package com.cartracking.main.entities;
+package com.cartracking.main.rabbitmq.message;
 
-public class TaskLog {
+import java.util.Date;
+
+public class TaskLogMessage {
     private long time;
     private double latitude;
     private double longitude;
@@ -22,6 +24,10 @@ public class TaskLog {
 
     public long getTime() {
         return time;
+    }
+
+    public Date getDateTime() {
+        return new Date(time);
     }
 
     public double getLatitude() {
