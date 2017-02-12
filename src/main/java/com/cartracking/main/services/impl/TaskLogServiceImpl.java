@@ -1,5 +1,6 @@
 package com.cartracking.main.services.impl;
 
+import com.cartracking.main.entities.Task;
 import com.cartracking.main.entities.cassandra.TaskLog;
 import com.cartracking.main.rabbitmq.message.TaskLogMessage;
 import com.cartracking.main.repositories.TaskLogRepo;
@@ -19,8 +20,8 @@ public class TaskLogServiceImpl implements TaskLogService {
     }
 
     @Override
-    public void add(TaskLogMessage taskLogMessage, long taskId) {
-        taskLogRepo.add(adaptToEntity(taskLogMessage, taskId));
+    public void add(TaskLogMessage taskLogMessage, Task task) {
+        taskLogRepo.add(adaptToEntity(taskLogMessage, task));
     }
 
     @Override
@@ -28,16 +29,16 @@ public class TaskLogServiceImpl implements TaskLogService {
         return taskLogRepo.find(taskId);
     }
 
-    private TaskLog adaptToEntity(TaskLogMessage taskLogMessage, long taskId) {
+    private TaskLog adaptToEntity(TaskLogMessage taskLogMessage, Task task) {
         TaskLog taskLog = new TaskLog();
-        taskLog.setTaskId(taskId);
+        taskLog.setTaskId(task.getId());
         taskLog.setLogTime(taskLogMessage.getDateTime());
         taskLog.setLatitude(taskLogMessage.getLatitude());
         taskLog.setLongitude(taskLogMessage.getLongitude());
         taskLog.setSpeed(taskLogMessage.getSpeed());
         taskLog.setAltitude(taskLogMessage.getAltitude());
         taskLog.setEmployeeId(taskLogMessage.getEmployeeId());
-        taskLog.setCarId(1);
+        taskLog.setCarId(task.getEmployee().getCar().getId());
 
         return taskLog;
     }

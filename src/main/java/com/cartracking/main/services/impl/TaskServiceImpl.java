@@ -7,9 +7,12 @@ import com.cartracking.main.services.TaskService;
 import com.cartracking.main.services.UserService;
 import com.cartracking.main.services.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -29,6 +32,7 @@ public class TaskServiceImpl implements TaskService {
         this.userService = userService;
     }
 
+    @Transactional
     @Override
     public Task save(Task task, long employeeId) {
         setEmployee(task, employeeId);
@@ -52,6 +56,8 @@ public class TaskServiceImpl implements TaskService {
         return Optional.ofNullable(taskRepo.findOne(id));
     }
 
+    @Transactional
+    @CacheEvict(cacheNames = "task_by_status_and_employee", allEntries = true)
     @Override
     public Task update(Task task, long employeeId) throws NotFoundException {
         setEmployee(task, employeeId);
