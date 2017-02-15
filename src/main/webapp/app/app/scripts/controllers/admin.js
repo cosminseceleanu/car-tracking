@@ -30,5 +30,5 @@ angular.module('appApp')
 
       $scope.$on("$destroy", disconnect);
       $scope.$on('disconnect', disconnect);
-      $state.go('admin.home');
+      // $state.go('admin.home');
   }]);
