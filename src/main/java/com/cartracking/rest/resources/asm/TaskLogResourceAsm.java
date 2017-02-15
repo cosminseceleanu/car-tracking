@@ -17,7 +17,7 @@ public class TaskLogResourceAsm extends ResourceAssemblerSupport<TaskLog, TaskLo
     public TaskLogResource toResource(TaskLog entity) {
         TaskLogResource resource = new TaskLogResource(entity.getTaskId());
         resource.setLongitude(entity.getLongitude());
-        resource.setLatitude(entity.getLongitude());
+        resource.setLatitude(entity.getLatitude());
 
         return resource;
     }

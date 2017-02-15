@@ -58,7 +58,7 @@ angular.module('appApp', [
       .state('admin.home', {
         url: '/home',
         controller: 'AdminHomeCtrl',
-        templateUrl: 'views/pages/home.html',
+        templateUrl: 'views/pages/admin-home.html',
         resolve: {
           id: function ($stateParams) {
             return $stateParams.id;
