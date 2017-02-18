@@ -35,7 +35,6 @@ angular.module('appApp')
 
       if (taskId != null) {
         $taskService.get(taskId, function (response) {
-          console.log(response);
           var task = response.data;
           $scope.task = task;
           task.limitDate = new Date(task.limitDate);
