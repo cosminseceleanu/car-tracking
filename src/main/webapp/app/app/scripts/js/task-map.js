@@ -5,6 +5,7 @@ var TaskMapSettings = {
         latitude: $scope.task.destinationLatitude || 44.4377397,
         longitude: $scope.task.destinationLongitude || 25.9542109
       },
+      control: {},
       zoom: 8,
       events: {
         dblclick: function (map, eventName, eventArgs) {
