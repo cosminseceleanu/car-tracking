@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('appApp')
-  .controller('AdminCtrl', ['$securityService', '$scope', '$location', '$stompClient', '$state',
-    function ($securityService, $scope, $location, $stompClient, $state) {
+  .controller('AdminCtrl', ['$securityService', '$scope', '$location', '$stompClient',
+    function ($securityService, $scope, $location, $stompClient) {
       if (!$securityService.isLogged()) {
           $location.path('home');
       }

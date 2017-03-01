@@ -16,14 +16,14 @@ import java.util.Properties;
 @Configuration
 @EnableJpaRepositories(basePackages={"com.cartracking.main.repositories"})
 @EnableTransactionManagement
-public class MysqlConfig {
+public class MysqlConfig extends Config {
 
     @Bean
     public BasicDataSource mysqlDataSource() {
         BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setUsername("root");
-        dataSource.setPassword("mysqlroot");
-        dataSource.setUrl("jdbc:mysql://127.0.0.1:3306/flote");
+        dataSource.setUsername(env.getProperty("mysql.username"));
+        dataSource.setPassword(env.getProperty("mysql.password"));
+        dataSource.setUrl(env.getProperty("mysql.url"));
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
 
         return dataSource;
