@@ -18,7 +18,6 @@ public class TaskLog {
     @PrimaryKeyColumn(name = "log_time", ordinal = 1, type = PrimaryKeyType.CLUSTERED)
     private Date logTime;
 
-
     @Column
     private double latitude;
 

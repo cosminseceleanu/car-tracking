@@ -10,13 +10,13 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @EnableRabbit
-public class RabbitMqConfig {
+public class RabbitMqConfig extends Config {
 
     @Bean
     ConnectionFactory connectionFactory() {
-        CachingConnectionFactory connectionFactory = new CachingConnectionFactory("localhost");
-        connectionFactory.setUsername("admin");
-        connectionFactory.setPassword("admin");
+        CachingConnectionFactory connectionFactory = new CachingConnectionFactory(env.getProperty("rabbitmq.host"));
+        connectionFactory.setUsername(env.getProperty("rabbitmq.user"));
+        connectionFactory.setPassword(env.getProperty("rabbitmq.pass"));
 
         return connectionFactory;
     }
@@ -25,8 +25,8 @@ public class RabbitMqConfig {
     public SimpleRabbitListenerContainerFactory rabbitListenerContainerFactory() {
         SimpleRabbitListenerContainerFactory factory = new SimpleRabbitListenerContainerFactory();
         factory.setConnectionFactory(connectionFactory());
-        factory.setConcurrentConsumers(2);
-        factory.setMaxConcurrentConsumers(6);
+        factory.setConcurrentConsumers(Integer.parseInt(env.getProperty("rabbitmq.consumer")));
+        factory.setMaxConcurrentConsumers(Integer.parseInt(env.getProperty("rabbitmq.consumer.max")));
         factory.setAcknowledgeMode(AcknowledgeMode.AUTO);
 
         return factory;
