@@ -1,37 +1,46 @@
 'use strict';
 
 angular.module('appApp')
-  .service('$taskService',['$http', 'API', '$securityService', function ($http, API, $securityService) {
-    var service = {};
+  .service('$taskService',['$http', 'API', '$httpParamSerializer',
+    function ($http, API, $securityService, $httpParamSerializer) {
+      var service = {};
 
-    service.create = function (task, callback) {
-      console.log(task);
-      doRequest($http.post(API + "/employees/" + task.employee.rid + "/tasks", task), callback)
-    };
+      service.create = function (task, callback) {
+        console.log(task);
+        doRequest($http.post(API + "/employees/" + task.employee.rid + "/tasks", task), callback)
+      };
 
-    service.update = function (task, callback) {
-      var uri = API + "/employees/" + task.employee.rid + "/tasks/" + task.rid;
-      doRequest($http.put(uri, task), callback)
-    };
+      service.update = function (task, callback) {
+        var uri = API + "/employees/" + task.employee.rid + "/tasks/" + task.rid;
+        doRequest($http.put(uri, task), callback)
+      };
 
-    service.getAll = function (callback, page, sort, size) {
-      page = page || 0;
-      size = size || 20;
-      var url = API + '/users/' + $securityService.getUserId() + '/tasks?page=' + page + '&size=' + size;
-      doRequest($http.get(url), callback);
-    };
+      service.getAll = function (callback, page, size) {
+        page = page || 0;
+        size = size || 20;
+        var url = API + '/users/' + $securityService.getUserId() + '/tasks?page=' + page + '&size=' + size;
+        doRequest($http.get(url), callback);
+      };
 
-    service.get = function(id, callback) {
-      doRequest($http.get(API + '/tasks/' + id), callback);
-    };
+      service.search = function (callback, page, size, filters) {
+        filters.page = page;
+        filters.size = size;
 
-    function doRequest(promise, successCallback) {
-      promise.then(function (response) {
-        successCallback(response);
-      }, function () {
-        alert('Server error');
-      });
-    }
+        var url = API + '/tasks/search?' + $.param(filters);
+        doRequest($http.get(url, {'param': filters}), callback);
+      };
 
-    return service;
+      service.get = function(id, callback) {
+        doRequest($http.get(API + '/tasks/' + id), callback);
+      };
+
+      function doRequest(promise, successCallback) {
+        promise.then(function (response) {
+          successCallback(response);
+        }, function () {
+          alert('Server error');
+        });
+      }
+
+      return service;
   }]);

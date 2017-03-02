@@ -5,9 +5,11 @@ import com.cartracking.main.services.TaskService;
 import com.cartracking.rest.exceptions.NotFoundException;
 import com.cartracking.rest.resources.TaskResource;
 import com.cartracking.rest.resources.asm.TaskResourceAsm;
+import com.mysema.query.types.Predicate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.PagedResources;
 import org.springframework.http.HttpStatus;
@@ -38,18 +40,9 @@ public class TaskController {
         return new ResponseEntity<>(null, HttpStatus.CREATED);
     }
 
-    @Secured("ROLE_ADMIN")
-    @RequestMapping(value = "/users/{userId}/tasks", method = RequestMethod.GET)
-    public ResponseEntity<PagedResources<TaskResource>> getAll(@PathVariable long userId, Pageable pageable) {
-        Page<Task> tasks = taskService.getAll(userId, pageable);
-        PagedResources<TaskResource> resources = pagedResourcesAssembler.toResource(tasks, taskResourceAsm);
-
-        return new ResponseEntity<>(resources, HttpStatus.OK);
-    }
-
-    @RequestMapping(value = "/employees/{employeeId}/tasks", method = RequestMethod.GET)
-    public ResponseEntity<PagedResources<TaskResource>> getForEmployee(@PathVariable long employeeId, Pageable pageable) {
-        Page<Task> tasks = taskService.getForEmployee(employeeId, pageable);
+    @RequestMapping(value = "/tasks/search", method = RequestMethod.GET)
+    public ResponseEntity<PagedResources<TaskResource>> search(@QuerydslPredicate(root = Task.class) Predicate predicate, Pageable pageable) {
+        Page<Task> tasks = taskService.search(predicate, pageable);
         PagedResources<TaskResource> resources = pagedResourcesAssembler.toResource(tasks, taskResourceAsm);
 
         return new ResponseEntity<>(resources, HttpStatus.OK);

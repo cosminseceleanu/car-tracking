@@ -2,16 +2,52 @@
 
 <ui-view></ui-view>
 
-<div class="panel panel-primary">
+
+<div class="panel panel-default">
   <div class="panel-heading">
-    <span class="lead">Listare task-uri</span>
+    <span class="lead">Filtrare task-uri</span>
   </div>
   <div class="panel-body">
+    <div class="row">
+      <div class="col-lg-10">
+        <form class="form-inline">
+          <div class="form-group">
+            <label class="control-label">Status task</label>
+            <select class="form-control" name="status" ng-model="filters.status">
+              <option value="NEW">Nou</option>
+              <option value="IN_PROGRESS">In lucru</option>
+              <option value="FINISHED">Finalizat</option>
+            </select>
+          </div>
+          <div class="form-group" style="margin-left: 10px">
+            <label>Id angajat</label>
+            <input type="text" class="form-control" placeholder="id anagajat" ng-model="filters.employee">
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-success" ng-click="search()">Cauta</button>
+          </div>
+        </form>
+      </div>
+
+
+    </div>
+  </div>
+
+  <div class="panel-footer">
     <div class="row">
       <div class="col-sm-6">
         <a ui-sref="admin.tasks.new" class="btn btn-primary">Adauga task</a>
       </div>
     </div>
+  </div>
+</div>
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <span class="lead">Listare task-uri</span>
+  </div>
+  <div class="panel-body">
     <div class="tablecontainer">
       <table class="table table-hover">
         <thead>

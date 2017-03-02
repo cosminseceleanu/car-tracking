@@ -6,6 +6,7 @@ import com.cartracking.main.repositories.TaskRepo;
 import com.cartracking.main.services.TaskService;
 import com.cartracking.main.services.UserService;
 import com.cartracking.main.services.exceptions.NotFoundException;
+import com.mysema.query.types.Predicate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
@@ -42,13 +43,8 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public Page<Task> getAll(long userId, Pageable pageable) {
-        return taskRepo.findByEmployeeAdminId(userId, pageable);
-    }
-
-    @Override
-    public Page<Task> getForEmployee(long employeeId, Pageable pageable) {
-        return taskRepo.findByEmployeeId(employeeId, pageable);
+    public Page<Task> search(Predicate predicate, Pageable pageable) {
+        return taskRepo.findAll(predicate, pageable);
     }
 
     @Override
