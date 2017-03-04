@@ -86,7 +86,7 @@
                 <li role="menuitem"><a ui-sref="admin.tasks.details({taskId: task.rid})">
                   <i class="fa fa-info-circle fa-fw"></i> Detalii</a>
                 </li>
-                <li role="menuitem"><a ui-sref="admin.tasks.edit({taskId: task.rid})">
+                <li role="menuitem" ng-if="task.status == FINISHED" ><a ui-sref="admin.tasks.edit({taskId: task.rid})">
                   <i class="fa fa-edit fa-fw"></i> Editeaza</a>
                 </li>
                 <li class="divider"></li>
