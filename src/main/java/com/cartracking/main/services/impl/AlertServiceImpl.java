@@ -12,12 +12,14 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
+
 @Service
 public class AlertServiceImpl implements AlertService {
 
     private AlertRepo alertRepo;
     private SimpMessagingTemplate messagingTemplate;
-    private final static String alertTopic = "/topic/user.*.alerts";
+    private final static String alertTopic = "/topic/user.%s.alerts";
 
     @Autowired
     public AlertServiceImpl(AlertRepo alertRepo, SimpMessagingTemplate messagingTemplate) {
@@ -45,11 +47,14 @@ public class AlertServiceImpl implements AlertService {
         AlertMessage alertMessage = new AlertMessage();
         alertMessage.title = alert.getTitle();
         alertMessage.message = alert.getMessage();
-        messagingTemplate.convertAndSend(alertTopic, alertMessage);
+        alertMessage.date = alert.getDate();
+        String topic = String.format(alertTopic, alert.getUser().getId());
+        messagingTemplate.convertAndSend(topic, alertMessage);
     }
 
     private class AlertMessage {
         public String message;
         public String title;
+        public Date date;
     }
 }

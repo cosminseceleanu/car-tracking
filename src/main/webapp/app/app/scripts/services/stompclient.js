@@ -12,7 +12,7 @@ angular.module('appApp')
     socket.connect = function (callback) {
       stompClient.connect({}, function (frame) {
         isConnected = true;
-        $rootScope.$broadcast("connected", frame);
+        $rootScope.$broadcast("stomp.connected", frame);
         if (callback) {
           callback();
         }
@@ -24,12 +24,13 @@ angular.module('appApp')
     socket.disconnect = function () {
       stompClient.disconnect();
       isConnected = false;
-      $rootScope.$broadcast("disconnect", {});
+      $rootScope.$broadcast("stomp.disconnect", {});
     };
 
     socket.subscribe = function (topic, callback) {
       console.log("subsribed to topic " + topic);
       return stompClient.subscribe(topic, function (message) {
+        console.log("message received for topic " + topic);
         callback(JSON.parse(message.body), message.headers);
       })
     };

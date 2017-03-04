@@ -28,7 +28,9 @@ angular.module('appApp')
         }
       }
 
-      $scope.$on("$destroy", disconnect);
-      $scope.$on('disconnect', disconnect);
+      $scope.$on("$destroy", function () {
+        $stompClient.disconnect();
+      });
+      $scope.$on('stomp.disconnect', disconnect);
       // $state.go('admin.home');
   }]);

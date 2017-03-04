@@ -55,6 +55,11 @@ angular.module('appApp', [
         controller: 'EmployeeCtrl',
         templateUrl: 'views/pages/employees.html'
       })
+      .state('admin.alerts', {
+        url: '/alerts',
+        controller: 'AlertListCtrl',
+        templateUrl: 'views/pages/alert-list.html'
+      })
       .state('admin.home', {
         url: '/home',
         controller: 'AdminHomeCtrl',
