@@ -9,3 +9,5 @@ CREATE TABLE task_logs (
 	car_id int,
 	PRIMARY KEY (task_id, log_time)
 );
+
+CREATE KEYSPACE car_tracking WITH replication = {'class': 'SimpleStrategy', 'replication_factor': '2'}  AND durable_writes = true;
