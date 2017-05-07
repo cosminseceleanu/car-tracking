@@ -1,6 +1,6 @@
 'use strict';
-var domain = 'http://localhost:8080';
-// var domain = 'http://104.199.102.220:8080';
+// var domain = 'http://localhost:8080';
+var domain = 'http://104.199.102.220:8080';
 
 angular.module('appApp', [
     'ngAnimate',
