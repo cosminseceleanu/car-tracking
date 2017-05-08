@@ -3,7 +3,8 @@
 angular.module('appApp')
   .service('$stompClient',['$rootScope', function ($rootScope) {
     var socket = {};
-    var url = "http://localhost:8080/ws";
+    // var url = "http://localhost:8080/ws";
+    var url = "http://104.199.102.220:8080/ws";
     var sockJs = new SockJS(url);
     var stompClient = Stomp.over(sockJs);
     stompClient.debug = null;

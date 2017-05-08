@@ -34,12 +34,18 @@ public class AlertListener {
     }
 
     private void onTaskUpdate(Task task) {
+        String message = "";
+        String title = "";
         if (Task.Status.valueOf(task.getStatus()) == Task.Status.FINISHED) {
-            return;
+            message = String.format("Task-ul cu id %d a fost finalizat de catre %s",
+                    task.getId(), task.getEmployee().getName());
+            title = "Un task a fost finalizat";
+        } else {
+            message = String.format("Task-ul cu id %d a preluat de catre %s",
+                    task.getId(), task.getEmployee().getName());
+            title = "Un task a fost preluat";
         }
-        String message = String.format("Task-ul cu id %d a fost finalizat de catre %s",
-                task.getId(), task.getEmployee().getName());
-        String title = "Un task a fost finalizat";
+
         alertService.add(title, message, task.getEmployee().getAdmin());
     }
 }
