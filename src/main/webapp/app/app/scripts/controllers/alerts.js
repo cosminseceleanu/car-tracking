@@ -7,6 +7,7 @@ angular.module('appApp')
       var page = 0;
       var size = 4;
       var alerts = [];
+      var counter = 0;
 
       function fetchAlerts() {
         $alertService.search(page, size, function (response) {
@@ -34,8 +35,18 @@ angular.module('appApp')
         if (alerts.length > size) {
           alerts.pop();
         }
-        $scope.alerts = alerts;
+        counter = counter + 1;
+        $scope.$apply(function(){
+          $scope.counter = counter;
+          $scope.alerts = alerts;
+        });
       }
+
+      $scope.counter = counter;
+      $scope.resetCounter = function () {
+        counter = 0;
+        $scope.counter = counter;
+      };
 
       fetchAlerts();
   }]);
