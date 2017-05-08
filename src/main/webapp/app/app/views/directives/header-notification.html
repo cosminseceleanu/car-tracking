@@ -1,17 +1,17 @@
 <ul class="nav navbar-top-links navbar-right">
-    <li uib-dropdown>
-        <a uib-dropdown-toggle>
-            <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
+    <li uib-dropdown ng-controller="AlertsCtrl">
+        <a uib-dropdown-toggle ng-click="resetCounter()">
+          Alerte
+          <span ng-if="counter > 0" class="label label-danger" ng-bind="counter"></span>
+          <i class="fa fa-caret-down"></i>
         </a>
 
-      <ul uib-dropdown-menu class="dropdown-alerts" ng-controller="AlertsCtrl">
+      <ul uib-dropdown-menu class="dropdown-alerts" >
         <li ng-repeat="alert in alerts">
-          <a href="#">
             <div>
               <i class="fa fa-tasks fa-fw"></i> {{alert.title}}
               <span class="pull-right text-muted small">{{alert.date | date:'dd MMM yyyy HH:mm'}}</span>
             </div>
-          </a>
         </li>
         <li class="divider"></li>
         <li>
