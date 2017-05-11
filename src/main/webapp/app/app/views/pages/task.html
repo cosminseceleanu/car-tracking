@@ -32,7 +32,8 @@
           <div class="panel-heading">Informatii localizare</div>
           <div class="panel-body">
             <ui-gmap-google-map center='map.center' zoom='map.zoom' control="map.control" events="map.events" options="map.options">
-              <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id"></ui-gmap-marker>
+              <ui-gmap-marker coords="markers[0].coords" options="markers[0].options" events="markers[0].events" idkey="markers[0].id"></ui-gmap-marker>
+              <ui-gmap-marker coords="markers[1].coords" options="markers[1].options" events="markers[1].events" idkey="markers[1].id"></ui-gmap-marker>
               <ui-gmap-polyline path="path"></ui-gmap-polyline>
             </ui-gmap-google-map>
           </div>

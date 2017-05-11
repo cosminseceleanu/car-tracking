@@ -13,6 +13,8 @@ public class TaskResource extends ResourceSupport {
     private UserResource employee;
     private double destinationLatitude;
     private double destinationLongitude;
+    private double sourceLatitude;
+    private double sourceLongitude;
     private String address;
 
     public Date getLimitDate() {
@@ -63,6 +65,22 @@ public class TaskResource extends ResourceSupport {
         this.destinationLongitude = destinationLongitude;
     }
 
+    public double getSourceLatitude() {
+        return sourceLatitude;
+    }
+
+    public void setSourceLatitude(double sourceLatitude) {
+        this.sourceLatitude = sourceLatitude;
+    }
+
+    public double getSourceLongitude() {
+        return sourceLongitude;
+    }
+
+    public void setSourceLongitude(double sourceLongitude) {
+        this.sourceLongitude = sourceLongitude;
+    }
+
     public String getAddress() {
         return address;
     }
@@ -85,6 +103,8 @@ public class TaskResource extends ResourceSupport {
         task.setAddress(address);
         task.setDestinationLatitude(destinationLatitude);
         task.setDestinationLongitude(destinationLongitude);
+        task.setSourceLatitude(sourceLatitude);
+        task.setSourceLongitude(sourceLongitude);
         if (status != null) {
             task.setStatus(status);
         }

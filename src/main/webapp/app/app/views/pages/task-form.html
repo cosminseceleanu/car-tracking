@@ -30,7 +30,7 @@
         <div class="form-group">
           <label class="col-sm-2 control-label">Adresa</label>
           <div class="col-sm-6">
-            <input  class="form-control" type="text" name="address" ng-model="task.address" placeholder="Adresa (Optional)">
+            <input  class="form-control" type="text" name="address" ng-model="task.address" placeholder="Adresa Destinatie(Optional)">
           </div>
         </div>
         <div class="form-group">
@@ -42,8 +42,8 @@
           </div>
           <div class="col-sm-9">
             <ui-gmap-google-map center='map.center' zoom='map.zoom' events="map.events" options="map.options">
-              <ui-gmap-search-box template="searchbox.template" events="searchbox.events" options="options"></ui-gmap-search-box>
-              <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id"></ui-gmap-marker>
+              <ui-gmap-marker coords="markers[0].coords" options="markers[0].options" events="markers[0].events" idkey="markers[0].id"></ui-gmap-marker>
+              <ui-gmap-marker coords="markers[1].coords" options="markers[1].options" events="markers[1].events" idkey="markers[1].id"></ui-gmap-marker>
             </ui-gmap-google-map>
           </div>
         </div>
