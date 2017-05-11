@@ -3,7 +3,12 @@
 angular.module('appApp')
   .controller('TaskFormCtrl',['$scope', '$employeeService', '$taskService', '$state', 'taskId',
     function ($scope, $employeeService, $taskService, $state, taskId) {
-      var task = {rid: '', destinationLatitude: '', destinationLongitude: '', endDate: '', address: '', employee: ''};
+      var task = {
+        rid: '',
+        destinationLatitude: '', destinationLongitude: '',
+        sourceLatitude: '', sourceLongitude: '',
+        endDate: '', address: '', employee: ''
+      };
       $scope.isOpen = false;
 
       var openCalendar = function (e) {
@@ -33,13 +38,13 @@ angular.module('appApp')
         }
       };
 
-      if (taskId != null) {
+      if (taskId !== null) {
         $taskService.get(taskId, function (response) {
           var task = response.data;
           $scope.task = task;
           task.limitDate = new Date(task.limitDate);
           $scope.map = TaskMapSettings.getMapSettings($scope);
-          $scope.marker = TaskMapSettings.getMarkerSettings($scope);
+          $scope.markers = TaskMapSettings.getMarkersSettings($scope);
         });
       }
 
@@ -53,11 +58,10 @@ angular.module('appApp')
       $scope.reset =reset;
       $scope.task = task;
       $scope.map = TaskMapSettings.getMapSettings($scope);
-      $scope.searchbox = TaskMapSettings.getSearchBoxSettings($scope);
       $scope.options = {
         scrollwheel: false
       };
-      $scope.marker = TaskMapSettings.getMarkerSettings($scope);
+      $scope.markers = TaskMapSettings.getMarkersSettings($scope);
       $scope.openCalendar = openCalendar;
       $scope.submit = submit;
     }]);

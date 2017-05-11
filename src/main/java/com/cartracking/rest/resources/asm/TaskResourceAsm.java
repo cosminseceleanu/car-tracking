@@ -25,6 +25,8 @@ public class TaskResourceAsm extends ResourceAssemblerSupport<Task, TaskResource
         taskResource.setLimitDate(task.getLimitDate());
         taskResource.setDestinationLongitude(task.getDestinationLongitude());
         taskResource.setDestinationLatitude(task.getDestinationLatitude());
+        taskResource.setSourceLatitude(task.getSourceLatitude());
+        taskResource.setSourceLongitude(task.getSourceLongitude());
         taskResource.setStartDate(task.getStartDate());
         taskResource.setStatus(task.getStatus());
         taskResource.setAddress(task.getAddress());

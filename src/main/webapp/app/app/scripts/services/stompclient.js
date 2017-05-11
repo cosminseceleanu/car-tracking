@@ -29,7 +29,7 @@ angular.module('appApp')
     };
 
     socket.subscribe = function (topic, callback) {
-      console.log("subsribed to topic " + topic);
+      console.log("subscribed to topic " + topic);
       return stompClient.subscribe(topic, function (message) {
         console.log("message received for topic " + topic);
         callback(JSON.parse(message.body), message.headers);

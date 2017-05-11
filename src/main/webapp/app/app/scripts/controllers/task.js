@@ -3,7 +3,11 @@
 angular.module('appApp')
   .controller('TaskCtrl',['$scope', '$taskService', 'taskId', '$taskLogService',
     function ($scope, $taskService, taskId, $taskLogService) {
-      $scope.task = {rid: '', destinationLatitude: '', destinationLongitude: '', endDate: '', address: '', employee: ''};
+      $scope.task = {
+        rid: '', destinationLatitude: '', destinationLongitude: '',
+        endDate: '', address: '', employee: '',
+        sourceLatitude: '', sourceLongitude: ''
+      };
       $scope.path = [];
 
       $taskService.get(taskId, function (response) {
@@ -23,16 +27,11 @@ angular.module('appApp')
       }
 
       var setupMap = function () {
-        $scope.map = TaskMapSettings.getMapSettings($scope);
+        $scope.map = TaskMapSettings.getMapSettings($scope, 8);
         $scope.options = {
           scrollwheel: false
         };
-        $scope.marker = TaskMapSettings.getMarkerSettings($scope);
-        $scope.marker.options = {
-          labelClass:'marker_labels',
-          labelAnchor: "20 50",
-          labelContent: '<strong>Destinatie</strong>'
-        };
+        $scope.markers = TaskMapSettings.getMarkersSettings($scope);
       };
 
       setupMap();

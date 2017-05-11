@@ -32,6 +32,12 @@ public class Task {
     @Column(name = "destination_lon")
     private double destinationLongitude;
 
+    @Column(name = "source_lat")
+    private double sourceLatitude;
+
+    @Column(name = "source_lon")
+    private double sourceLongitude;
+
     @Column(name = "address")
     private String address;
 
@@ -117,5 +123,21 @@ public class Task {
 
     public void setEmployee(User employee) {
         this.employee = employee;
+    }
+
+    public double getSourceLatitude() {
+        return sourceLatitude;
+    }
+
+    public void setSourceLatitude(double sourceLatitude) {
+        this.sourceLatitude = sourceLatitude;
+    }
+
+    public double getSourceLongitude() {
+        return sourceLongitude;
+    }
+
+    public void setSourceLongitude(double sourceLongitude) {
+        this.sourceLongitude = sourceLongitude;
     }
 }

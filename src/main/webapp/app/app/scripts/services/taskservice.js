@@ -1,12 +1,11 @@
 'use strict';
 
 angular.module('appApp')
-  .service('$taskService',['$http', 'API', '$httpParamSerializer',
-    function ($http, API, $securityService, $httpParamSerializer) {
+  .service('$taskService',['$http', 'API',
+    function ($http, API, $securityService) {
       var service = {};
 
       service.create = function (task, callback) {
-        console.log(task);
         doRequest($http.post(API + "/employees/" + task.employee.rid + "/tasks", task), callback)
       };
 
