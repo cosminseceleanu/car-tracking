@@ -15,13 +15,13 @@ var TaskMapSettings = {
     markers[0] = TaskMapSettings.createMarkerSettings(
       $scope,
       $scope.task.destinationLatitude || 44.4477397,
-      $scope.destinationLongitude || 25.9542109,
+      $scope.task.destinationLongitude || 25.9542109,
       0, "Destinatie"
     );
     markers[1] = TaskMapSettings.createMarkerSettings(
       $scope,
       $scope.task.sourceLatitude || 44.430259,
-      $scope.sourceLongitude || 26.108731,
+      $scope.task.sourceLongitude || 26.108731,
       1, "Sursa",
       "https://maps.google.com/mapfiles/ms/icons/blue-dot.png"
     );
