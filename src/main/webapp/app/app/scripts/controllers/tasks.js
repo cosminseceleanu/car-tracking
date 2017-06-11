@@ -5,7 +5,7 @@ angular.module('appApp')
     function ($scope, $employeeService, $taskService, $securityService) {
       $scope.totalItems = 0;
       $scope.currentPage = 0;
-      $scope.itemsPerPage = 4;
+      $scope.itemsPerPage = 10;
       $scope.filters =  {employee: null, status: null};
       $scope.isOpen = false;
 

@@ -24,6 +24,7 @@ angular.module('appApp')
       service.search = function (callback, page, size, filters) {
         filters.page = page;
         filters.size = size;
+        filters.sort= 'id,desc';
 
         var url = API + '/tasks/search?' + $.param(filters);
         doRequest($http.get(url, {'param': filters}), callback);
