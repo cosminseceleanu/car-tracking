@@ -8,7 +8,7 @@ angular.module('appApp')
         endDate: '', address: '', employee: '',
         sourceLatitude: '', sourceLongitude: ''
       };
-      $scope.path = [];
+      $scope.routeMarkers = [];
 
       $taskService.get(taskId, function (response) {
         $scope.task = response.data;
@@ -22,8 +22,26 @@ angular.module('appApp')
           if (!logs) {
             return;
           }
-          $scope.path = logs;
+          var markers = [];
+          logs.forEach(function (log) {
+            markers.push(createPathMarker(log.latitude, log.longitude));
+          });
+          $scope.routeMarkers = markers;
         });
+      }
+
+      function createPathMarker(lat, lng) {
+        var date = new Date();
+        return {
+          id: date.getTime(),
+          coords: {
+            latitude: lat,
+            longitude: lng
+          },
+          options: {
+            icon: "https://maps.google.com/mapfiles/ms/icons/green-dot.png"
+          }
+        }
       }
 
       var setupMap = function () {
