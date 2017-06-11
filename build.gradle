@@ -1,0 +1,63 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.3.6.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+jar {
+    baseName = 'car-tracking'
+    version = '0.0.2'
+}
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+
+dependencies {
+    //spring
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile('org.springframework.boot:spring-boot-starter-hateoas')
+    compile('org.springframework.boot:spring-boot-starter-security')
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile("org.springframework.boot:spring-boot-starter-websocket")
+    compile("org.springframework.boot:spring-boot-starter-amqp")
+    compile("org.springframework.boot:spring-boot-starter-cache")
+    compile ('org.springframework.data:spring-data-cassandra:1.5.0.RELEASE')
+    compile ('org.springframework.data:spring-cql:1.5.0.RELEASE')
+
+    compile "com.mysema.querydsl:querydsl-jpa:3.7.4"
+    compile "com.mysema.querydsl:querydsl-apt:3.7.4:jpa"
+
+
+    //mysql - orm
+    compile 'org.apache.commons:commons-dbcp2:2.0'
+    compile 'mysql:mysql-connector-java:5.1.13'
+
+    //relay broker
+    compile 'io.projectreactor:reactor-net:2.0.6.RELEASE'
+    compile 'io.projectreactor:reactor-core:2.0.6.RELEASE'
+    compile 'io.netty:netty-all:4.0.33.Final'
+
+    compile 'io.jsonwebtoken:jjwt:0.6.0'
+
+    //cassandra
+    compile 'com.datastax.cassandra:cassandra-driver-core:3.1.3'
+    compile 'com.datastax.cassandra:cassandra-driver-mapping:3.1.3'
+    compile 'com.datastax.cassandra:cassandra-driver-extras:3.1.3'
+
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.9'
+}
